@@ -110,4 +110,6 @@ frontier.get().then((item) => {
 ```
 
 
+# Citations
+
 <a id="footnote1">[1]</a>: [High-Performance Web Crawling](http://www.cs.cornell.edu/courses/cs685/2002fa/mercator.pdf) - Marc Najork, Allan Heydon

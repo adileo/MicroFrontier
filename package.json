@@ -4,7 +4,16 @@
   "description": "",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
-  "keywords": ["Web Crawler", "Frontier", "Search Engine", "URL", "Redis", "Queue", "Spider", "Robots.txt"],
+  "keywords": [
+    "Web Crawler",
+    "Frontier",
+    "Search Engine",
+    "URL",
+    "Redis",
+    "Queue",
+    "Spider",
+    "Robots.txt"
+  ],
   "scripts": {
     "test": "jest",
     "build": "swc src/ -d dist/ --copy-files",
@@ -28,9 +37,9 @@
     "typescript": "^4.4.4"
   },
   "dependencies": {
-    "env-json-parser": "^1.0.2",
     "ioredis": "^4.28.0",
     "micro": "^9.3.4",
-    "microrouter": "^3.1.3"
+    "microrouter": "^3.1.3",
+    "nconf": "^0.11.3"
   }
 }

@@ -1,19 +1,17 @@
+import * as nconf from 'nconf';
+nconf.env({parseValues: true, separator:'_'}).argv();
 import { send, json } from 'micro'
 import { router } from 'microrouter'
 import * as MR from 'microrouter';
 import { URLFrontier } from './URLFrontier'
-import { EnvJsonParser } from 'env-json-parser';
 import micro from 'micro';
 import { Worker } from 'worker_threads'
 
 const { get, post } = MR as any;
 
-const envJsonParser = new EnvJsonParser('MF_');
-const mfConfig = envJsonParser.get();
-
 const frontier = new URLFrontier({
-    config: mfConfig ? mfConfig.config : null,
-    redisOptions: mfConfig ? mfConfig.redis : {}
+    config: nconf.get('config') ? nconf.get('config') : null,
+    redisOptions: nconf.get('redis') ? nconf.get('redis') : {}
 });
 var frontendWorkerPool
 
@@ -26,7 +24,7 @@ for(var i = 0; i < FEW ; i++){
     const worker = new Worker(__dirname + '/FrontendWorkerPool.js', {
         workerData: {
             config: frontier.config,
-            redisOptions: mfConfig ? mfConfig.redis : {}
+            redisOptions: nconf.get('redis') ? nconf.get('redis') : {}
         }
     });
     frontendWorkers.push(worker);
@@ -68,7 +66,7 @@ const postFrontendWorkers = async (req, res) => {
         const worker = new Worker(__dirname + '/FrontendWorkerPool.js', {
             workerData: {
                 config: frontier.config,
-                redisOptions: mfConfig ? mfConfig.redis : {}
+                redisOptions: nconf.get('redis') ? nconf.get('redis') : {}
             }
         });
         frontendWorkers.push(worker);
@@ -87,9 +85,9 @@ const server = micro(router(
     get('/*', notfound)
 ))
 
-const PORT = process.env.PORT ? process.env.PORT : 8090
-const HOST = process.env.HOST ? process.env.HOST : '127.0.0.1'
-server.listen(PORT, HOST)
+const port = nconf.get('port') ? nconf.get('port') : 8090
+const host = nconf.get('host') ? nconf.get('host') : '127.0.0.1'
+server.listen(port, host)
 server.addListener('listening', () => {
-    console.log(`Server Started on ${HOST}:${PORT}`)
+    console.log(`Server Started on ${host}:${port}`)
 })

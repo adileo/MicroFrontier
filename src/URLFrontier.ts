@@ -12,8 +12,6 @@ export class URLFrontier {
             'normal':   {probability: 0.3},
             'low':      {probability: 0.1},
         },
-        frontendQueueWorkers: 1,
-        backendQueueWorkers: 1,
         defaultCrawlDelay: 1000
     }
 
@@ -28,6 +26,7 @@ export class URLFrontier {
 
         this.config = {...this.defaultConfig, ...(config ? config : {})};
 
+      
         if (redisOptions)
             this.redisClient = new IORedis(redisOptions)
 

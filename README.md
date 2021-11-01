@@ -7,8 +7,13 @@ MicroFrontier is a scalable and distributed frontier implemented through Redis Q
 - [x] Multiple priority queues
 - [x] Custom priority strategy
 - [x] Per-Hostname crawl rate limit or default delay fallback
-- [x] Simple HTTP Microservice 
+- [x] Easy to use HTTP Microservice 
 - [x] Multi-processing support
+
+<br>
+Example of Mercator Frontier [^1]
+
+![Queue](./docs/images/queue.png)
 
 ## Usage
 
@@ -103,3 +108,4 @@ frontier.get().then((item) => {
 })
 ```
 
+[^1]: [High-Performance Web Crawling](http://www.cs.cornell.edu/courses/cs685/2002fa/mercator.pdf) - Marc Najork, Allan Heydon

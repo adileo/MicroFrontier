@@ -4,20 +4,33 @@
   "description": "",
   "main": "./dist/index.js",
   "exports": "./dist/index.js",
+  "keywords": ["Web Crawler", "Frontier", "Search Engine", "URL", "Redis", "Queue", "Spider", "Robots.txt"],
   "scripts": {
     "test": "jest",
-    "build": "swc src/index.ts -o dist/index.js"
+    "build": "swc src/ -d dist/ --copy-files",
+    "start": "npm run build && node ./dist/MicroServer.js",
+    "prepublishOnly": "npm run build && tsc"
+  },
+  "bin": {
+    "microfrontier": "./bin/index.js"
   },
   "author": "Adileo Barone",
   "license": "ISC",
   "devDependencies": {
     "@swc/cli": "^0.1.51",
     "@swc/core": "^1.2.105",
+    "@types/ioredis": "^4.27.8",
     "@types/jest": "^27.0.2",
-    "jest": "^27.3.1"
+    "ioredis-mock": "^5.6.0",
+    "jest": "^27.3.1",
+    "mockdate": "^3.0.5",
+    "ts-jest": "^27.0.7",
+    "typescript": "^4.4.4"
   },
   "dependencies": {
-    "@types/ioredis": "^4.27.8",
-    "ioredis": "^4.28.0"
+    "env-json-parser": "^1.0.2",
+    "ioredis": "^4.28.0",
+    "micro": "^9.3.4",
+    "microrouter": "^3.1.3"
   }
 }

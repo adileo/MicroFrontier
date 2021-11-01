@@ -11,7 +11,8 @@ MicroFrontier is a scalable and distributed frontier implemented through Redis Q
 - [x] Multi-processing support
 
 <br>
-Example of Mercator Frontier[^1]
+
+Example of Mercator Frontier<sup>[[1]](#footnote1)</sup>
 
 ![Queue](./docs/images/queue.png)
 
@@ -109,4 +110,4 @@ frontier.get().then((item) => {
 ```
 
 
-[^1]: [High-Performance Web Crawling](http://www.cs.cornell.edu/courses/cs685/2002fa/mercator.pdf) - Marc Najork, Allan Heydon
+<a id="footnote1">[1]</a>: [High-Performance Web Crawling](http://www.cs.cornell.edu/courses/cs685/2002fa/mercator.pdf) - Marc Najork, Allan Heydon

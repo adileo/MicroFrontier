@@ -1,6 +1,14 @@
 # MicroFrontier &middot; [![npm](https://img.shields.io/npm/dm/microfrontier.svg?style=flat-square)](https://npm-stat.com/charts.html?package=microfrontier) [![npm version](https://img.shields.io/npm/v/microfrontier.svg?style=flat-square)](https://www.npmjs.com/package/microfrontier) ![Docker Pulls](https://img.shields.io/docker/pulls/adileo/microfrontier) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/adileo/microfrontier/latest)
 
-A lightweight web crawler frontier implementation in TypeScript backed by Redis.
+A web crawler frontier implementation in TypeScript backed by Redis.
+MicroFrontier is a scalable and distributed frontier implemented through Redis Queues.
+
+- [x] Fast Ingestion & High throughput
+- [x] Multiple priority queues
+- [x] Custom priority strategy
+- [x] Per-Hostname crawl rate limit or default delay fallback
+- [x] Simple HTTP Microservice 
+- [x] Multi-processing support
 
 ## Usage
 

@@ -12,7 +12,7 @@ MicroFrontier is a scalable and distributed frontier implemented through Redis Q
 
 <br>
 
-Example of Mercator Frontier<sup>[[1]](#footnote1)</sup>
+Example of Mercator Frontier<sup>[1](#footnote1)</sup>
 
 ![Queue](./docs/images/queue.png)
 
@@ -109,6 +109,7 @@ frontier.get().then((item) => {
 })
 ```
 
+<br>
 
 # Citations
 

@@ -130,8 +130,15 @@ frontier.get().then((item) => {
     // {url: "http://www.example.com", meta: {"foo":"bar"}}
 })
 ```
+
+## Per Hostname Rate-Limit
+Implemented, documentation WIP
+
 ## Scaling the frontend queue workers
-TODO
+Implemented, documentation WIP
+
+## Getting the number of enqueued urls (for an hostname)
+Implemented, documentation WIP
 
 <br>
 

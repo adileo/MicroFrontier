@@ -32,7 +32,7 @@ This seems a simple problem until you realize that you have to consider a lot of
 - You have to visit a web page just once, or once in a while
 - Some pages are more important than others to be crawled early on while others are just spider traps
 
-Since I couldn't find a lightweight frontier implementation with the technologies I love the most, I made MicroFrontier, hoping that could help researchers.
+Since I couldn't find a lightweight multipurpose frontier implementation, I made MicroFrontier, hoping that could help field researchers.
 
 
 ## Usage

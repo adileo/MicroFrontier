@@ -1,4 +1,6 @@
-# MicroFrontier &middot; [![npm](https://img.shields.io/npm/dm/microfrontier.svg?style=flat-square)](https://npm-stat.com/charts.html?package=microfrontier) [![npm version](https://img.shields.io/npm/v/microfrontier.svg?style=flat-square)](https://www.npmjs.com/package/microfrontier) ![Docker Pulls](https://img.shields.io/docker/pulls/adileo/microfrontier) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/adileo/microfrontier/latest)
+# MicroFrontier &middot; [![npm](https://img.shields.io/npm/dm/microfrontier.svg?style=flat-square)](https://npm-stat.com/charts.html?package=microfrontier) [![npm version](https://img.shields.io/npm/v/microfrontier.svg?style=flat-square)](https://www.npmjs.com/package/microfrontier) ![Docker Pulls](https://img.shields.io/docker/pulls/adileo/microfrontier?style=flat-square) ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/adileo/microfrontier/latest?style=flat-square) [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0)
+
+
 
 A web crawler frontier implementation in TypeScript backed by Redis.
 MicroFrontier is a scalable and distributed frontier implemented through Redis Queues.
@@ -16,18 +18,21 @@ MicroFrontier is a scalable and distributed frontier implemented through Redis Q
 
 <br>
 
-Example of Mercator Frontier<sup>[1](#footnote1)</sup> at the base of MicroFrontier implementation
+MicroFrontier is inspired by the Mercator Frontier<sup>[1](#footnote1)</sup>
 
 ![Queue](./docs/images/queue.png)
 
-## Why?
+## Why you need MicroFrontier?
 
 The frontier essentially answer a simple question: "What URL should i crawl next?".
-This seems a simple problem until you realize that you have to consider:
-- That multiple crawler should be able to work concurrently
-- You have to be polite with websites
-- You have to visit a web page just once in a while
-- Some pages are more important than others to be crawled early on
+This seems a simple problem until you realize that you have to consider a lot of factors:
+
+- That multiple crawlers should be able to work concurrently without overlapping
+- You have to be polite with websites (DDoSing a website isn't fun)
+- You have to visit a web page just once, or once in a while
+- Some pages are more important than others to be crawled early on while others are just spider traps
+
+Since I couldn't find a lightweight frontier implementation with the technologies I love the most, I made MicroFrontier, hoping that could help researchers.
 
 
 ## Usage

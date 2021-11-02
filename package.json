@@ -28,7 +28,7 @@
     "microfrontier": "./bin/index.js"
   },
   "author": "Adileo Barone",
-  "license": "ISC",
+  "license": "GPL-3",
   "devDependencies": {
     "@swc/cli": "^0.1.51",
     "@swc/core": "^1.2.105",

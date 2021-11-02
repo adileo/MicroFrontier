@@ -4,47 +4,64 @@ A web crawler frontier implementation in TypeScript backed by Redis.
 MicroFrontier is a scalable and distributed frontier implemented through Redis Queues.
 
 - [x] Fast Ingestion & High throughput
-- [x] Multiple priority queues
-- [x] Custom priority strategy
-- [x] Per-Hostname crawl rate limit or default delay fallback
-- [x] Easy to use HTTP Microservice 
-- [x] Multi-processing support
+- [x] Easy to use HTTP Microservice or Javascript Client
+- [x] Multiple configurable priority queues
+- [x] Customizable stochastic function for priority queue picking
+- [x] Politeness Policy: Per-Hostname crawl rate limit or default fallback delay
+- [x] Multi-processing & concurrency support
+- [ ] Prioritization Strategy: Breadth-first Crawl, Depth-first crawl, PageRank etc... - TODO
+- [ ] URL Re-visit policy - TODO
+- [ ] URL canonicalization and Bloom filtering - TODO
+- [ ] URL Selection Policy - TODO
 
 <br>
 
-Example of Mercator Frontier<sup>[1](#footnote1)</sup>
+Example of Mercator Frontier<sup>[1](#footnote1)</sup> at the base of MicroFrontier implementation
 
 ![Queue](./docs/images/queue.png)
 
+## Why?
+
+The frontier essentially answer a simple question: "What URL should i crawl next?".
+This seems a simple problem until you realize that you have to consider:
+- That multiple crawler should be able to work concurrently
+- You have to be polite with websites
+- You have to visit a web page just once in a while
+- Some pages are more important than others to be crawled early on
+
+
 ## Usage
 
-MicroFrontier can be used both as a Javascript library SDK, from the command line or with a Docker deploy.
+MicroFrontier can be used both as a Javascript library SDK, from the command line or with a Docker instance working as a microservice.
 
-### Command Line
+### Command line usage
 Install microfrontier with:
 ```
 npm i -g microfrontier
 ```
 Run microfrontier
 ```bash
-microfrontier --port 3035 --redis:host localhost #see configuration for other parameters
+microfrontier --host localhost --port 8090 --redis:host localhost --redis:port 6379
+#see configuration section below for additional parameters
 ```
 
 
-### As a package
-Npm:
-```
+### As a javascript library
+
+```bash
 npm i microfrontier
-```
-Yarn:
-```
+
+# or
+
 yarn add microfrontier
 ```
+See below the examples for using the Javascript Client.
 
 ### Docker
 ```
 docker pull adileo/microfrontier
 ```
+You can configure the docker instance with the environment variables described below.
 
 ## Configuration
 
@@ -56,17 +73,17 @@ docker pull adileo/microfrontier
 | redis_port | --redis:port | Redis server port.<br> Default value: `6379`   |
 | redis_* | --redis:* | Parameters are interpreted by `nconf` and passed to `ioredis` as the client config.  
 | config_frontierName | --config:frontierName | Prefix used for Redis keys.  |
-| config_* | --config:* | Parameters are interpreted by `nconf`, default value below.  |
+| config_* | --config:* | Parameters are interpreted by `nconf`, you can find an example of default values below.  |
 
 ```typescript
 {
-    frontierName: 'frontier',
-    priorities: {
+    frontierName: 'frontier', // Example ENV: config_frontierName=frontier
+    priorities: { // Example ENV: config_priorities={"high":{"probability":0.6},...}
         'high':     {probability: 0.6},
         'normal':   {probability: 0.3},
         'low':      {probability: 0.1},
     },
-    defaultCrawlDelay: 1000
+    defaultCrawlDelay: 1000 // Example ENV: config_defaultCrawlDelay=1000
 }
 ```
 
@@ -108,6 +125,8 @@ frontier.get().then((item) => {
     // {url: "http://www.example.com", meta: {"foo":"bar"}}
 })
 ```
+## Scaling the frontend queue workers
+TODO
 
 <br>
 

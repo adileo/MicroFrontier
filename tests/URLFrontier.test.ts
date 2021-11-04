@@ -1,6 +1,6 @@
 
 import { URLFrontier } from '../src/URLFrontier';
-import * as Redis from 'ioredis-mock';
+import Redis from 'ioredis-mock';
 import * as IORedis from 'ioredis';
 import { FrontendWorker } from '../src/FrontendWorker';
 import MockDate from 'mockdate'
@@ -79,3 +79,6 @@ test('Frontier - URL Insertion, frontend, backend, heap & counters', async () =>
     expect(await frontier.getBackend('test.com')).toMatchObject([])
     expect(await frontier.getBackend('sub.test2.com')).toMatchObject([])
 })
+
+
+

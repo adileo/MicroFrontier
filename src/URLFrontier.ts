@@ -53,6 +53,8 @@ export class URLFrontier {
         if(!(priority in this.config.priorities))
         throw new Error('Wrong priority specified');
 
+        // TODO: Drop filter - selection policy
+        
         // Push the url to the front-end queue
         const queueName = URLFrontier.getFrontendQueueName(this.config,priority)
         await this.redisClient.lpush(queueName, JSON.stringify({url, meta}))
